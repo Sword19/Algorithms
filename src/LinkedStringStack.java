@@ -10,6 +10,10 @@ public class LinkedStringStack {
         public Node node;
     }
 
+    public static void main(String[] args) {
+        
+    }
+
 
     boolean isEmpty() {
         return currentNode == null;
