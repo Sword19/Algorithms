@@ -1,7 +1,5 @@
-__author__ = 'Saif'
+__author__ = 'Sword'
 
-
-print "hi"
 
 class QuickFind:
 
