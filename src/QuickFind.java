@@ -20,12 +20,23 @@ public class QuickFind {
 
     private int[] id;
 
+    /***
+     * Initialize the elements
+     *
+     * @param n ist he number of element
+     */
     QuickFind(int n) {
         id = new int[n];
         for (int i = 0; i < n; i++)
             id[i] = i;
     }
 
+    /***
+     * Connect both points p and q.
+     *
+     * @param p the first site
+     * @param q the second site
+     */
     void union(int p, int q) {
         int pid = id[p];
         int qid = id[q];
@@ -34,6 +45,13 @@ public class QuickFind {
                 id[i] = qid;
     }
 
+    /***
+     * Test the connection of both site.
+     *
+     * @param p the first site
+     * @param q the second site
+     * @return true if both sites are connected otherwise false.
+     */
     boolean connected(int p, int q) {
         return id[p] == id[q];
     }
