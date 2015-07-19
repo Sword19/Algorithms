@@ -1,10 +1,10 @@
 /**
  * Created by deadlydragon00 on 7/15/2015.
  */
-public class QuickFind {
+public class QuickUnion {
 
     public static void main(String[] args) {
-        QuickFind pol = new QuickFind(10);
+        QuickUnion pol = new QuickUnion(10);
 
         pol.union(3, 5);
         pol.union(5, 6);
@@ -25,7 +25,7 @@ public class QuickFind {
      *
      * @param n ist he number of element
      */
-    QuickFind(int n) {
+    QuickUnion(int n) {
         id = new int[n];
         for (int i = 0; i < n; i++)
             id[i] = i;
@@ -38,11 +38,13 @@ public class QuickFind {
      * @param q the second site
      */
     void union(int p, int q) {
-        int pid = id[p];
-        int qid = id[q];
-        for (int i = 0; i < id.length; i++)
-            if (id[i] == pid)
-                id[i] = qid;
+        int pid = root(p);
+        int qid = root(q);
+        // cancel if they are already connected!
+        if (pid == qid)
+            return;
+
+        id[qid] = pid;
     }
 
     /***
@@ -53,7 +55,23 @@ public class QuickFind {
      * @return true if both sites are connected otherwise false.
      */
     boolean connected(int p, int q) {
-        return id[p] == id[q];
+        // compare both roots if similar
+        return root(p) == root(q);
     }
+
+    /***
+     * Find the root on an element.
+     *
+     * @param val the element
+     * @return the root on an element.
+     */
+    private int root(int val) {
+        int root = val;
+        while (root != id[root]) {
+            root = id[root];
+        }
+        return root;
+    }
+
 
 }
